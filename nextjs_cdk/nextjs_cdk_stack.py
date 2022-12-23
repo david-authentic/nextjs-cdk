@@ -1,19 +1,28 @@
 from aws_cdk import (
-    # Duration,
     Stack,
-    # aws_sqs as sqs,
+    SecretValue,
+    aws_amplify_alpha as amplify
 )
 from constructs import Construct
 
-class NextjsCdkStack(Stack):
+class NextjsStack(Stack):
 
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        # The code that defines your stack goes here
+        amplify_app = amplify.App(self, "WebClient",
+                                  source_code_provider=amplify.GitHubSourceCodeProvider(
+                                      owner="david-authentic",
+                                      repository="nextjs-cdk",
+                                      oauth_token=SecretValue.secrets_manager(
+                                          secret_id="arn:aws:secretsmanager:us-east-1:875073938755:secret:github-token-4059es"
+                                      ),
+                                  ),
+                                  auto_branch_deletion=True,
+                                  )
 
-        # example resource
-        # queue = sqs.Queue(
-        #     self, "NextjsCdkQueue",
-        #     visibility_timeout=Duration.seconds(300),
-        # )
+        main = amplify_app.add_branch("main")
+        main.add_environment("BUILD_ENV", "production")
+
+        dev = amplify_app.add_branch("staging")
+        dev.add_environment("BUILD_ENV", "staging")
