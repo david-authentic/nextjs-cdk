@@ -9,7 +9,7 @@ applications:
         build:
           commands:
             - npm install -g env-cmd
-            - env-cmd -f .env.${AWS_BRANCH} npm run build
+            - env-cmd -f .env.${BUILD_ENV} npm run build
       artifacts:
         baseDirectory: .next
         files:
