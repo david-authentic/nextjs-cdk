@@ -1,16 +1,14 @@
 version: 1
 applications:
   - appRoot: app
-    env:
-      variables:
-        AMPLIFY_MONOREPO_APP_ROOT: app
     frontend:
       phases:
         preBuild:
           commands:
             - npm ci
         build:
-          commands: -env-cmd -f .env.${BUILD_ENV} npm run build
+          commands:
+            - env-cmd -f .env.${AWS_BRANCH} npm run build
       artifacts:
         baseDirectory: .next
         files:
