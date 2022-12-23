@@ -1,7 +1,7 @@
 import aws_cdk as core
 import aws_cdk.assertions as assertions
 
-from nextjs_cdk.nextjs_cdk_stack import NextjsCdkStack
+from infra.nextjs_cdk_stack import NextjsCdkStack
 
 # example tests. To run these tests, uncomment this file along with the example
 # resource in nextjs_cdk/nextjs_cdk_stack.py
