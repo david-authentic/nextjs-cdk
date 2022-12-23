@@ -9,9 +9,9 @@ applications:
         build:
           commands: -env-cmd -f .env.${BUILD_ENV} npm run build
       artifacts:
-        baseDirectory: .next
+        baseDirectory: ./app/.next
         files:
           - "**/*"
       cache:
         paths:
-          - node_modules/**/*
+          - ./app/node_modules/**/*
