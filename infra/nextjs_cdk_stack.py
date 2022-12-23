@@ -13,7 +13,7 @@ class NextjsStack(Stack):
         amplify_app = amplify.App(self, "Nextjs",
                                   source_code_provider=amplify.GitHubSourceCodeProvider(
                                       owner="david-authentic",
-                                      repository="nextjs-cdk",
+                                      repository="nextjs",
                                       oauth_token=SecretValue.secrets_manager(
                                           secret_id="arn:aws:secretsmanager:us-east-1:875073938755:secret:github-token-4059es"
                                       ),
