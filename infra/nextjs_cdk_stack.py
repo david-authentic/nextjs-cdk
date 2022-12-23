@@ -27,4 +27,4 @@ class NextjsStack(Stack):
 
         dev = amplify_app.add_branch("staging")
         dev.add_environment("AMPLIFY_MONOREPO_APP_ROOT", "app")
-        main.add_environment("BUILD_ENV", "staging")
+        dev.add_environment("BUILD_ENV", "staging")
